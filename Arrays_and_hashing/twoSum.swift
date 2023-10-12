@@ -2,17 +2,15 @@ import Foundation
 
 class Solution {
     func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
+        var dictonary = [Int: Int]()
 
-        for i in 0..<nums.count {
-            for j in 0..<nums.count {
-                if i != j {
-                    if nums[i] + nums[j] == target {
-                        return [i, j]
-                    }
-                }
+        for (index, value) in nums.enumerated() {
+            if let dictonaryIndex = dictonary[value] {
+                return [dictonaryIndex, index]
+            } else {
+                dictonary[target - value] = index
             }
         }
-
         return []
     }
 }
@@ -20,7 +18,7 @@ class Solution {
 let sol = Solution()
 
 // Inputs
-let nums = [3,3], target = 6
+let nums = [2,7,11,15], target = 9
 
 let output = sol.twoSum(nums, target)
 print(output)
